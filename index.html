@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Blue & White</title>
+    <style>
+        /* TEMA FUTURISTIK MINIMALIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            letter-spacing: 0.8px;
+        }
+
+        body {
+            background-color: #000000; /* Hitam Murni */
+            color: #ffffff; /* Putih Bersih */
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #000;
+            padding: 18px 0;
+            text-align: center;
+            border-bottom: 1px solid #0055ff; /* Garis biru tipis */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { 
+            font-size: 20px; 
+            font-weight: 300; 
+            text-transform: uppercase; 
+            color: #ffffff;
+            letter-spacing: 4px;
+        }
+        .logo span { color: #0055ff; font-weight: 700; }
+
+        /* HIGHLIGHT SECTION */
+        .highlight-container {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 15px;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .main-news, .side-news-item {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+            transition: border 0.4s ease;
+        }
+
+        .main-news { height: 350px; }
+        .side-news { display: flex; flex-direction: column; gap: 15px; }
+        .side-news-item { height: 167px; }
+
+        .main-news img, .side-news-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(60%);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s;
+        }
+
+        .main-news:hover img, .side-news-item:hover img {
+            filter: brightness(90%);
+            transform: scale(1.05);
+        }
+
+        .main-news:hover, .side-news-item:hover {
+            border-color: #0055ff;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 25px 20px;
+        }
+
+        .category { 
+            font-size: 10px; 
+            color: #0055ff; 
+            font-weight: 800; 
+            text-transform: uppercase;
+            border: 1px solid #0055ff;
+            padding: 2px 8px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .overlay h2 { font-size: 18px; color: #ffffff; text-transform: uppercase; line-height: 1.3; }
+        .overlay h3 { font-size: 14px; color: #ffffff; font-weight: 400; }
+
+        /* GALLERY SECTION */
+        .gallery-section {
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            background: #0055ff;
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+            gap: 12px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            background: #0a0a0a;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: #0055ff;
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover img {
+            opacity: 1;
+        }
+
+        /* MODAL (ZOOM) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85%;
+            border: 1px solid #0055ff;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 600px) {
+            .highlight-container { grid-template-columns: 1fr; padding: 10px; }
+            .main-news { height: 250px; }
+            .side-news { flex-direction: row; }
+            .side-news-item { flex: 1; height: 130px; }
+            .overlay h2 { font-size: 15px; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CORE<span>OS</span></div>
+    </header>
+
+    <section class="highlight-container">
+        <div class="main-news">
+            <img src="https://picsum.photos/id/122/800/600" alt="Tech 1">
+            <div class="overlay">
+                <span class="category">Interface</span>
+                <h2>Optimalisasi Data Grid dalam Arsitektur Cloud</h2>
+            </div>
+        </div>
+        <div class="side-news">
+            <div class="side-news-item">
+                <img src="https://picsum.photos/id/160/400/300" alt="Tech 2">
+                <div class="overlay"><h3>Enkripsi Quantum</h3></div>
+            </div>
+            <div class="side-news-item">
+                <img src="https://picsum.photos/id/180/400/300" alt="Tech 3">
+                <div class="overlay"><h3>Satelit Generasi 6</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <main class="gallery-section">
+        <h2 class="section-title">Visual Assets</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://picsum.photos/id/200/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/201/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/202/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/203/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/204/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/206/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/208/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/209/300/300" alt="Asset"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/210/300/300" alt="Asset"></div>
+        </div>
+    </main>
+
+    <div id="imageModal" class="modal">
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("imgFull");
+        const images = document.querySelectorAll(".gallery-item img");
+
+        images.forEach(img => {
+            img.onclick = () => {
+                modal.style.display = "flex";
+                modalImg.src = img.src;
+            };
+        });
+
+        modal.onclick = () => {
+            modal.style.display = "none";
+        };
+    </script>
+</body>
+</html>
